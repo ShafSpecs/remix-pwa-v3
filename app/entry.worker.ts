@@ -1,6 +1,6 @@
 /// <reference lib="WebWorker" />
 
-import { RemixNavigationHandler } from "./sw";
+import { PrecacheHandler } from "./sw";
 
 // import createStorageRepository from "./database.js";
 
@@ -9,13 +9,14 @@ declare let self: ServiceWorkerGlobalScope;
 
 const PAGES = "page-cache";
 const DATA = "data-cache";
-// const ASSETS = "assets-cache";
+const ASSETS = "assets-cache";
 
 // create lru-cache stores here (custom ofc) and pass them instead to the handlers
 
-const precacheHandler = new RemixNavigationHandler({
+const messageHandler = new PrecacheHandler({
   dataCacheName: DATA,
-  documentCacheName: PAGES
+  documentCacheName: PAGES,
+  assetCacheName: ASSETS,
 });
 
 self.addEventListener("install", (event) => {
@@ -27,5 +28,5 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("message", (event) => {
-  event.waitUntil(precacheHandler.handle(event));
+  event.waitUntil(messageHandler.handle(event));
 });
