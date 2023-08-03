@@ -29,7 +29,7 @@ if (!validArgs.includes(arg)) {
 function createEsbuildConfig(config) {
   return {
     entryPoints: {
-      [config.workerName]: "./remix-pwa/service-worker.internal.js",
+      [config.workerFile]: "./remix-pwa/service-worker.internal.js",
     },
     globalName: "remix",
     outdir: config.workerBuildDirectory,
