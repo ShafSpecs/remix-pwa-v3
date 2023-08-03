@@ -1,41 +1,41 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import { useLoaderData } from 'react-router';
+import { Link } from '@remix-run/react'
+import { json } from '@remix-run/node';
+import { json as clientJson } from '~/sw/utils/request';
 
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+
+export async function loader() {
+  const date = new Date()
+
+  return json({
+    time: `${date.getMinutes()}:${date.getSeconds()} - loader`
+  })
+}
+
+export async function workerLoader() {
+  const date = new Date()
+
+  return clientJson({
+    time: `${date.getMinutes()}:${date.getSeconds()} - worker`
+  })
+}
 
 export default function Index() {
+  const { time } = useLoaderData()
+
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div>
+      <h1>Welcome to Remix-With-Workbox</h1>
+      <h2>The time is: {time}</h2>
+      <Link to='/bar'>Goto Bar</Link>
+      <br />
+      <Link to='/foo'>Goto Foo</Link>
+      <br />
+      <Link to='/catch'>Goto Catch</Link>
+      <br />
+      <Link to='/error'>Goto Error</Link>
+      <br />
+      <Link to='/parent'>Goto Parent</Link>
     </div>
   );
 }
