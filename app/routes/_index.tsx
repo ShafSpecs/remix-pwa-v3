@@ -1,8 +1,7 @@
 import { useLoaderData } from 'react-router';
 import { Link } from '@remix-run/react'
 import { json } from '@remix-run/node';
-import { json as clientJson } from '~/sw/utils/request';
-
+import { json as clientJson } from '~/sw/utils/response';
 
 export async function loader() {
   const date = new Date()
@@ -12,7 +11,7 @@ export async function loader() {
   })
 }
 
-export async function workerLoader() {
+export function workerLoader() {
   const date = new Date()
 
   return clientJson({
@@ -30,10 +29,6 @@ export default function Index() {
       <Link to='/bar'>Goto Bar</Link>
       <br />
       <Link to='/foo'>Goto Foo</Link>
-      <br />
-      <Link to='/catch'>Goto Catch</Link>
-      <br />
-      <Link to='/error'>Goto Error</Link>
       <br />
       <Link to='/parent'>Goto Parent</Link>
     </div>
