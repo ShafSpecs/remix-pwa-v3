@@ -1,4 +1,4 @@
-import { useSWEffect } from "@remix-pwa/sw";
+import { useSWEffect } from "./sw";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
 import {
