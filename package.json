@@ -10,6 +10,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@remix-pwa/sw": "^1.1.2",
     "@remix-run/css-bundle": "^1.19.1",
     "@remix-run/node": "^1.19.1",
     "@remix-run/react": "^1.19.1",
