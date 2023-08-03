@@ -34,9 +34,9 @@ async function readConfig(remixRoot, mode) {
 
   return {
     ...remixConfig,
-    worker:
-      workerConfig.worker ?? `${remixConfig.appDirectory}/entry.worker.ts`,
-    workerName: workerConfig.workerName ?? "entry.worker", // to avoid breaking old applications that use remix-pwa 
+    workerFilePath:
+      workerConfig.workerFilePath ?? `${remixConfig.appDirectory}/entry.worker.ts`,
+    workerFile: workerConfig.workerFile ?? "entry.worker", // to avoid breaking old applications that use remix-pwa 
     workerMinify: workerConfig.workerMinify ?? false,
     workerBuildDirectory:
       workerConfig.workerBuildDirectory ?? path.resolve("./public"),
