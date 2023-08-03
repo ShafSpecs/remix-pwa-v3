@@ -50,7 +50,7 @@ function entryModulePlugin(config) {
       ${createRouteList(routes)}
     ];
 
-    import * as entryWorker from  '${config.worker}?user';
+    import * as entryWorker from  '${config.workerFilePath}?user';
     export const entry = { module: entryWorker };
     `;
 
